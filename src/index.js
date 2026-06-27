@@ -1,31 +1,25 @@
 "use strict";
-//const firstName: string = "Sasha";
-//const lastName: string = "Ivanov";
-//const pi: number = 3.14;
-//console.log(`${firstName} ${lastName}`);
-// Вивести 10 консоль.логів у консоль  // Вивести тільки парні
-//for (let i = 0; i < 10; i++) {
-//if(i % 2 === 0){
-// console.log(`Число з циклу for - ${i}`);
-//}
-//}
-//console.dir(document);
-// Задача: створити невеликий додаток, який може обчислити факторіал числа
-const form = document.querySelector(`#factorial-form`);
-const stepsList = document.querySelector(`#factorial-steps`);
+/*
+Задача: Створити форму з двома input які запитують користувачів їх ім'я та вік.
+        У формі має бути кнопка "Купити алкоголь".
+        Якщо вік користувача дозволяє - вивід повідомлення у верстку про те, що алкоголь купувати дозволено.
+        В противному випадку - вивід повідомлення про заборону купування.
+*/
+const form = document.querySelector('#alcohol-form');
+const messageDiv = document.querySelector("#message");
+// Зчитування вводимих користувачем даних
 form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    // Очищаємо список перед виведенням нових результатів
-    stepsList.textContent = '';
-    // Отримати введене число
-    const numberInput = document.querySelector('#number');
-    const number = Number(numberInput.value); // приводимо змінну до типу number
-    // Обчислення факторіалу та додавання кожної ітерації до списку
-    let factorial = 1;
-    for (let i = 1; i <= number; i++) {
-        factorial *= i;
-        const listItem = document.createElement('li');
-        listItem.textContent = `${factorial}`; // запис проміжного добудку для цього рядку
-        stepsList.appendChild(listItem);
+    event.preventDefault(); // Зупинка завантаження сторінки після відправки форми
+    const nameInput = document.querySelector("#name");
+    const ageInput = document.querySelector("#age");
+    // "Витягнення" значень з input-ів
+    const name = nameInput.value;
+    const age = Number(ageInput.value); // з input-ів завжди повертається тип даних string, тому приводимо до типу даних number
+    // Реалізація логіки
+    if (age >= 18) {
+        messageDiv.textContent = `${name}, Вам дозволено купувати алкоголь.`;
+    }
+    else {
+        messageDiv.textContent = `${name}, Вам заборонено купувати алкоголь.`;
     }
 });
